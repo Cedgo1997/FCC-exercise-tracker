@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Exercise Tracker</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous"
+		/>
+	</head>
+	<body>
+        <div class="container mt-5"><h2>Exercise Tracker</h2></div>
+		<div class="container mt-5">
+            <h3>Create a New User</h3>
+			<form action="api/exercise/new-user" method="POST">
+				<div class="form-group">
+					<label for="uname">Username</label>
+					<input
+						type="text"
+						class="form-control"
+						id="uname"
+                        name="username"
+                        placeholder="username"
+					/>
+				</div>
+				<input type="submit" class="btn btn-primary" value="POST USER"></input>
+			</form>
+        </div>
+        <div class="container mt-5">
+            <h3>Add exercises</h3>
+            <form action="api/exercise/add" method="POST">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="userId">User Id</label>
+                    <input type="text" name="id" class="form-control" id="id" placeholder="userId*">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="description">Description</label>
+                    <input type="text" name="description" class="form-control" id="description" placeholder="description*">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="duration">Duration</label>
+                    <input type="text" name="duration" class="form-control" id="duration" placeholder="duration* (mins.)">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputPassword4">Date</label>
+                    <input type="text" name="date" class="form-control" id="date" placeholder="date* (yyyy-mm-dd)">
+                  </div>
+                </div>
+                <input type="submit" class="btn btn-primary" value="POST EXERCISE"></input>
+              </form>
+        </div>
+
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"
+		></script>
+	</body>
+</html>
