@@ -14,6 +14,7 @@ const User = require('./models/user.model');
 mongoose.connect(process.env.MONGO_URI, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
+	useFindAndModify: false,
 });
 
 app.use(cors());
@@ -97,6 +98,44 @@ app.post('/api/exercise/add', (req, res) => {
 			});
 		}
 	);
+});
+
+// GET LOG
+
+app.get('/api/exercise/log', (req, res) => {
+	const userId = req.query.userId;
+	const from = req.query.from !== undefined ? new Date(req.query.from) : null;
+	const to = req.query.to !== undefined ? new Date(req.query.to) : null;
+	const limit = parseInt(req.query.limit);
+
+	User.findById(userId, (err, data) => {
+		let count = data.exercises.length;
+
+		if (data == null) {
+			res.send('There is no user with that id');
+		} else {
+			if (from && to) {
+				res.send({
+					_id: userId,
+					username: data.username,
+					count: limit || count,
+					log: data.exercises
+						.filter(
+							(exercise) =>
+								exercise.date >= from && exercise.date <= to
+						)
+						.slice(0, limit || count),
+				});
+			} else {
+				res.send({
+					_id: userId,
+					username: data.username,
+					count: limit || count,
+					log: data.exercises.slice(0, limit || count),
+				});
+			}
+		}
+	});
 });
 
 const listener = app.listen(process.env.PORT || 3000, () => {
