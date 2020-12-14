@@ -61,7 +61,7 @@ app.get('/api/exercise/users', (req, res) => {
 	User.find({})
 		.select('username _id')
 		.exec((err, data) => {
-			err ? res.send(err) : res.json({ users: data });
+			err ? res.send(err) : res.send(data);
 		});
 });
 
