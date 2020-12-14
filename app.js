@@ -91,7 +91,7 @@ app.post('/api/exercise/add', (req, res) => {
 				username: data.username,
 				_id: data._id,
 				description,
-				duration,
+				duration: Number(duration),
 				date: req.body.date
 					? new Date(req.body.date).toDateString()
 					: new Date().toDateString(),
